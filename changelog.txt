@@ -1,0 +1,154 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-02-10
+  - Factorio 2.0: harden prototype loading by stripping/converting legacy 'lines_per_file' everywhere and forcing clean towship-tagboat animation in data-final-fixes.
+
+2026-02-10
+  - Converted legacy `lines_per_file` fields to `line_length` in final-fixes to prevent Factorio 2.0 prototype load errors (towship-tagboat / wooden-platform-barge).
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-02-10
+  - Fixed Factorio 2.0 prototype load error: towship-tagboat no longer inherits/keeps legacy sprite fields like "lines_per_file".
+    The tug now uses its own 256-frame rotated animation from tagboat_barge_graphics (graphics/tugboat/0001..0256.png).
+---------------------------------------------------------------------------------------------------
+Version 0.1.0
+  - Fixed Factorio 2.0 prototype load error by stripping legacy "lines_per_file" from tugboat animation layers
+  - Tugboat uses custom graphics from tagboat_barge_graphics (graphics/tugboat/0001..0256.png)
+  - Fixed Enter hop-in/hop-off: driving_changed_state no longer interferes with tagboat (blocks only barge)
+
+  - Added quick hop-in key (K) to enter nearest free tagboat
+  - Fixed tagboat hop-off: deck tiles are placed around the boat (never under it)
+  - Barge sprites are loaded from external dependency mod 'tagboat_barge_graphics'
+  - Disembark now creates a temporary deck (landfill tiles) when no land is nearby
+  - Moved barge sprites to external dependency mod 'tagboat_barge_graphics'
+
+  - Fixed custom-input consuming type for Factorio 2.0 (game-only)
+
+  - Added custom-input 'tagboat-disembark' (key: L) to enable safe disembark
+
+  - Added forced disembark (L) to teleport player to nearest valid land position
+
+  - Barge uses 256-direction sprite set (0001.png–0256.png) for smooth rotation
+
+  - Floating barge now uses prerendered sprite animation (0001.png–0256.png)
+
+Version 0.1.0
+  - Updated barge graphics filenames to 0001.png–0256.png
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed Lua syntax: added missing comma after rope color table (rendering common table).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed Lua syntax error in rope color definition (missing table closure).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Changed towing rope color to brown for better visual realism.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Rope visual: moved stern attachment and first joint closer to the tug (bend starts immediately).
+  - Barge steering: barge now gradually rotates to follow tow direction under tension (no rigid coupling).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Adjusted tow correction: when rope pulls strongly sideways, barge is moved primarily along its own axis
+    (reduces yaw/rotation caused by bow-applied tow vector).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed crash: LuaEntity has no angular_velocity; now estimates turning-in-place from orientation delta.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Replaced rigid towing (fixed offset + forced barge rotation) with flexible rope towing.
+  - Rope bends at stern joint up to ~145°; turning in place no longer makes the barge orbit/spin.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed Lua syntax error caused by return placement in safe tow routing.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Removed stiff towing physics that forced barge rotation during tug in-place turns.
+  - Rope can bend up to ~145 degrees at stern joint; turning in place does not spin the barge.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Changed: towing line now uses springy two-joint dynamics (hinge near tug reacts first; hinge near barge lags), avoiding rigid-hitch look.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed: control.lua syntax error (stray '(ori)' line) in orientation_to_vec() causing load failure.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed crash: geometry helpers were nested due to broken clamp() definition; vec_angle now properly defined.
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Changed: Lina holownicza reaguje na skręt holownika — najpierw „pracuje” przegub przy rufie tagboat, a przegub przy dziobie barki podąża z opóźnieniem (bez efektu sztywnego holu).
+  - Added: Wyliczanie kątów: (1) lina ↔ holownik (odniesienie do kierunku „tyłu” holownika) oraz (2) lina ↔ barka; wartości zapisywane w stanie holu.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed: Crash on_tick — dodano brakującą funkcję clamp() używaną przy animacji liny holowniczej.
+---------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Changed: Lina holownicza ma teraz 2 główne przeguby (przy tagboat i przy barce) oraz delikatny „luz” animowany, żeby hol nie wyglądał na sztywny.
+--------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Changed: Barka holowana jest teraz 15 tile za tagboat (mniej kolizji).
+  - Fixed: Usunięto łączenie przewodem elektrycznym między barką a tagboat — zostaje tylko biała lina holownicza (rendering line).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed: mod loading crash in Factorio 2.0 (tow-wire-anchor collision_mask now uses the required {layers={...}} format).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Removed: wooden-platform tile "connection" / moving decks (no tiles are painted between tug and barge anymore).
+  - Added: real copper wire towline using hidden wire-anchor entities (stern of tug to bow of barge).
+  - Changed: towing distance is now exactly 5 tiles behind the tug.
+  - Changed: barge orientation now uses the computed angle between tug and barge (looks like it's pulled by a line).
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed: tugboat movement (no longer paints tiles under the tug).
+  - Fixed: towing attach reliability (larger attach radius).
+  - Changed: tug now paints a small stern platform behind it so you can exit onto it.
+  - Changed: barge no longer requires fuel (burner removed); still towable with J/K.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-01-31
+  - Fixed Factorio 2.0 storage usage (storage table, not global).
+  - Reworked wooden-platform into a floating barge entity that paints wooden-platform tiles under itself.
+  - Towship-tagboat can tow/untow barges with J (attach) and K (detach).
+  - Added a small moving wooden deck under towship-tagboat to allow exiting on water.
+---------------------------------------------------------------------------------------------------
