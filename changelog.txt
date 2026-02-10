@@ -1,6 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2026-02-10
+  - Barge remains fuel-free (always towed).
+  - Increased `wooden-platform-barge` item stack size to 444.
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2026-02-10
   - Factorio 2.0: harden prototype loading by stripping/converting legacy 'lines_per_file' everywhere and forcing clean towship-tagboat animation in data-final-fixes.
 
 2026-02-10

@@ -167,7 +167,7 @@ do
     barge.turret_animation = empty_sprite
     barge.working_sound = nil
 
-    -- Barge should NOT require fuel / energy
+    -- Barge is always towed, so it should never require fuel / energy
     barge.burner = nil
     barge.consumption = "0kW"
     barge.effectivity = 0
@@ -180,7 +180,7 @@ do
       type = "item-with-entity-data",
       name = "wooden-platform-barge",
       place_result = "wooden-platform-barge",
-      stack_size = 1,
+      stack_size = 444,
       subgroup = "transport",
       order = "b[wooden-platform-barge]",
       icons = {
