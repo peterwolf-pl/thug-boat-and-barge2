@@ -53,24 +53,26 @@ end
     tug.minable.result = "towship-tagboat"
     tug.allow_passengers = true
     local function make_tug_animation()
-local filenames = {}
-for i = 1, 16 do
-  filenames[#filenames+1] = string.format("__tagboat_barge_graphics__/graphics/tugboat/tug_%02d.png", i)
-end
+      local filenames = {}
+      for i = 1, 16 do
+        filenames[#filenames + 1] = string.format("__tagboat_barge_graphics__/graphics/tugboat/tug_%02d.png", i)
+      end
 
-return {
-  direction_count = 256,
-  frame_count = 1,
-  line_length = 4,
-  lines_per_file = 4,
-  filenames = filenames,
-  slice = 16,
-  width = 474,
-  height = 458,
-  shift = util and util.by_pixel(0, -6) or {0, -6/32},
-  priority = "high"
-}
-end
+      return {
+        direction_count = 256,
+        frame_count = 1,
+        line_length = 4,
+        lines_per_file = 4,
+        filenames = filenames,
+        width = 474,
+        height = 458,
+        shift = util.by_pixel(0, -6),
+        priority = "high"
+      }
+    end
+
+    tug.animation = make_tug_animation()
+    tug.turret_animation = empty_sprite
 
     -- Use icon from graphics mod
     tug.icons = {
